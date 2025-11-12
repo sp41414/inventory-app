@@ -1,16 +1,16 @@
 const db = require("../db/queries");
 
 const getHomePage = async (req, res) => {
+  res.render("index");
+};
+const getGamesPage = async (req, res) => {
   const games = await db.fetchGames();
   console.log(games);
-  res.render("index", {
+  res.render("games", {
     games: games.games,
     genres: games.genres,
     developers: games.developers,
   });
-};
-const getGamesPage = (req, res) => {
-  res.render("games");
 };
 const getGamesFormPage = (req, res) => {
   res.render("gamesForm");

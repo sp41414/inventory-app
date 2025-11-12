@@ -6,12 +6,16 @@
     <title>Inventory App</title>
   </head>
   <body>
-    <nav>
-      <a href="/games">Games</a>
-      <a href="/games/new">Create New Game</a>
-    </nav>
-    <% locals.games.forEach((game) => { %> <%= game.name %> <% }) %> <%
-    locals.developers.forEach((developer) => {%> <%= developer.name %> <% }) %> <%
-    locals.genres.forEach((genre) => {%> <% genre.name %> <% }) %>
+    <%- include('partials/navbar') %>
+    <header>
+      <h1>Welcome to our Game Inventory</h1>
+      <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet,
+        impedit eius? Aspernatur cupiditate, fuga harum explicabo corrupti,
+        sunt, at cumque esse consequatur officia ducimus cum nihil voluptatibus
+        ea aperiam ipsam?
+      </p>
+      <a href="/games">Browse Our Games</a>
+    </header>
   </body>
 </html>
