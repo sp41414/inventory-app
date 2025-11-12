@@ -50,7 +50,7 @@ const appendGame = async ({ name, developer, genre, company }) => {
   }
   // then add the game, link the genre's id and link the developer's id (^^^) to it
   await pool.query(
-    "INSERT INTO games (name, genreID, developerID) VALUES ($1, (SELECT id FROM genres WHERE genres.name = $2), $3);",
+    "INSERT INTO games (name, genreID, developerID) VALUES ($1, (SELECT id FROM genres WHERE genres.id = $2), $3);",
     [name, genre, devResult.rows[0].id]
   );
 };
