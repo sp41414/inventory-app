@@ -19,7 +19,8 @@ const validateMessage = [
     .withMessage(`Developer ${matchErr}`),
   body("company")
     .trim()
-    .optional.if(body("company").notEmpty())
+    .optional()
+    .if(body("company").notEmpty())
     .isLength({ min: 1, max: 20 })
     .withMessage(`Company ${lenErr}`)
     .matches(/^[a-zA-Z0-9 ]*$/)
@@ -66,6 +67,12 @@ const postGamesFormPage = [
     if (!errors.isEmpty()) {
       return res.render("gamesForm", { genres: genres, errors: errors.errors });
     }
+    await db.appendGame({
+      name: req.body.name,
+      genre: req.body.genre,
+      developer: req.body.developer,
+      company: req.body.company,
+    });
     res.redirect("/");
   },
 ];

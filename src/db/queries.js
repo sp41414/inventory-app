@@ -34,7 +34,26 @@ const fetchGenres = async () => {
   return genres.rows;
 };
 
-const appendGame = async ({ name, developer, genre, company }) => {};
+const appendGame = async ({ name, developer, genre, company }) => {
+  // check if developer already exists
+  let devResult = await pool.query(
+    "SELECT id FROM developers WHERE name = $1;",
+    [developer]
+  );
+
+  if (devResult.rows.length === 0) {
+    // if not, add the developer
+    devResult = await pool.query(
+      "INSERT INTO developers (name, company) VALUES ($1, $2) RETURNING id;",
+      [developer, company]
+    );
+  }
+  // then add the game, link the genre's id and link the developer's id (^^^) to it
+  await pool.query(
+    "INSERT INTO games (name, genreID, developerID) VALUES ($1, (SELECT id FROM genres WHERE genres.name = $2), $3);",
+    [name, genre, devResult.rows[0].id]
+  );
+};
 
 module.exports = {
   fetchGames,
