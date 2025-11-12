@@ -1,4 +1,5 @@
 const db = require("../db/queries");
+const { body, validationResult, matchedData } = require("express-validator");
 
 const getHomePage = async (req, res) => {
   res.render("index");
@@ -19,9 +20,9 @@ const getGamesPage = async (req, res) => {
     developers: games.developers,
   });
 };
-
-const getGamesFormPage = (req, res) => {
-  res.render("gamesForm");
+const getGamesFormPage = async (_, res) => {
+  const genres = await db.fetchGenres();
+  res.render("gamesForm", { genres: genres });
 };
 
 const postGamesFormPage = (req, res) => {

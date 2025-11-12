@@ -29,7 +29,13 @@ const fetchGamesByGenreID = async (ids) => {
   };
 };
 
+const fetchGenres = async () => {
+  const genres = await pool.query("SELECT * FROM genres ORDER BY name;");
+  return genres.rows;
+};
+
 module.exports = {
   fetchGames,
   fetchGamesByGenreID,
+  fetchGenres,
 };

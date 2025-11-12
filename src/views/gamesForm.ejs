@@ -7,5 +7,22 @@
   </head>
   <body>
     <%- include('partials/navbar') %>
+    <form action="/games/new" method="post">
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" required />
+      <label for="genre">Genre</label>
+      <select name="genre" id="genre">
+        <% locals.genres.forEach((genre) => { %>
+        <option value="<%=genre.id%>"><%= genre.name%></option>
+        <%}) %>
+      </select>
+      <label for="developer">Developer</label>
+      <input type="text" name="developer" id="developer" required />
+      <label for="company">Company</label>
+      <input type="text" name="company" id="company" required />
+      <label for="admin">Admin Password</label>
+      <input type="text" name="admin" id="admin" required />
+      <button type="submit">Submit</button>
+    </form>
   </body>
 </html>
