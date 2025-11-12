@@ -55,9 +55,14 @@ const appendGame = async ({ name, developer, genre, company }) => {
   );
 };
 
+const deleteGameByID = async (id) => {
+  await pool.query("DELETE FROM games WHERE id=$1", [id]);
+};
+
 module.exports = {
   fetchGames,
   fetchGamesByGenreID,
   fetchGenres,
   appendGame,
+  deleteGameByID,
 };

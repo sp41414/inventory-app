@@ -35,6 +35,17 @@ const validateMessage = [
     }),
 ];
 
+const validateDeleteMessage = [
+  body("admin")
+    .trim()
+    .custom((value) => {
+      if (value !== process.env.ADMIN_PASS) {
+        throw new Error("Invalid Admin Password");
+      }
+      return true;
+    }),
+];
+
 const getHomePage = async (req, res) => {
   res.render("index");
 };
@@ -77,9 +88,32 @@ const postGamesFormPage = [
   },
 ];
 
+const getGamesDelete = (req, res) => {
+  const id = Object.keys(req.query);
+  res.render("gamesDeleteForm", { id: id[0] });
+};
+
+const postGamesDelete = [
+  validateDeleteMessage,
+  async (req, res) => {
+    const errors = validationResult(req);
+    const id = Object.keys(req.body);
+    if (!errors.isEmpty()) {
+      return res.render("gamesDeleteForm", {
+        id: id[0],
+        errors: errors.errors,
+      });
+    }
+    await db.deleteGameByID(id[0]);
+    res.redirect("/");
+  },
+];
+
 module.exports = {
   getHomePage,
   getGamesPage,
   getGamesFormPage,
   postGamesFormPage,
+  getGamesDelete,
+  postGamesDelete,
 };

@@ -43,6 +43,9 @@
             Genre: <%= locals.genres.find(genre => genre.id ===
             game.genreid)?.name || "None" %>
           </p>
+          <form action="/games/delete" method="get">
+            <button type="submit" name="<%= game.id %>">Delete</button>
+          </form>
         </div>
         <% }) %>
       </section>
