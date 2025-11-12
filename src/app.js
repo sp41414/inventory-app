@@ -14,8 +14,8 @@ app.use("/", appRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, (error) => {
-  if (error) {
-    throw Error;
-  }
-  console.log(`App running on port ${PORT}`);
+	if (error) {
+		throw Error;
+	}
+	console.log(`App running on port ${PORT}`);
 });

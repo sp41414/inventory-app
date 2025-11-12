@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory App</title>
+  </head>
+  <body>
+    <nav>
+      <a href="/games">Games</a>
+      <a href="/games/new">Create New Game</a>
+    </nav>
+    <% locals.games.forEach((game) => { %> <%= game.name %> <% }) %> <%
+    locals.developers.forEach((developer) => {%> <%= developer.name %> <% }) %> <%
+    locals.genres.forEach((genre) => {%> <% genre.name %> <% }) %>
+  </body>
+</html>
