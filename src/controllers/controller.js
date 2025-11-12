@@ -4,14 +4,22 @@ const getHomePage = async (req, res) => {
   res.render("index");
 };
 const getGamesPage = async (req, res) => {
-  const games = await db.fetchGames();
-  console.log(games);
+  let games;
+
+  if (Object.keys(req.query).length > 0) {
+    const genreIDs = Object.keys(req.query).map(Number);
+    games = await db.fetchGamesByGenreID(genreIDs);
+  } else {
+    games = await db.fetchGames();
+  }
+
   res.render("games", {
     games: games.games,
     genres: games.genres,
     developers: games.developers,
   });
 };
+
 const getGamesFormPage = (req, res) => {
   res.render("gamesForm");
 };

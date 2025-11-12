@@ -7,5 +7,41 @@
   </head>
   <body>
     <%- include('partials/navbar') %>
+    <header>
+      <h1>Our Games</h1>
+    </header>
+    <main>
+      <section class="categories">
+        <ul>
+          <form action="/games" method="GET">
+            <button type="submit">Apply Filter</button>
+            <% locals.genres.forEach(genre => { %>
+            <li>
+              <input
+                type="checkbox"
+                id="<%=genre.id%>"
+                name="<%=genre.id%>"
+              /><%= genre.name%>
+            </li>
+            <% }) %>
+          </form>
+        </ul>
+      </section>
+      <section class="games">
+        <% locals.games.forEach(game => { %>
+        <div class="game">
+          <h1><%= game.name %></h1>
+          <p>
+            Developer: <%= locals.developers.find(developer => developer.id ===
+            game.developerid)?.name || "None" %>
+          </p>
+          <p>
+            Genre: <%= locals.genres.find(genre => genre.id ===
+            game.genreid)?.name || "None" %>
+          </p>
+        </div>
+        <% }) %>
+      </section>
+    </main>
   </body>
 </html>
