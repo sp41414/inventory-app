@@ -1,0 +1,200 @@
+* {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  border: none;
+  text-decoration: none;
+  color: white;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: rgb(2, 6, 24);
+}
+
+nav {
+  display: flex;
+  padding: 1rem;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(15, 23, 43);
+}
+
+#home {
+  color: white;
+}
+
+button {
+  background-color: rgb(21, 93, 251);
+  transition: all 0.5s;
+  padding: 0.75rem 0.5rem;
+  border-radius: 1rem;
+}
+button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  background-color: rgb(43, 127, 255);
+}
+.links {
+  display: flex;
+  gap: 2rem;
+  font-size: 1.4rem;
+}
+
+a {
+  color: rgb(142, 81, 255);
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 0.5rem;
+  transition: color 0.3s;
+}
+
+a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: rgb(81, 162, 255);
+  transition: width 0.3s;
+}
+
+a:hover::after {
+  width: 100%;
+}
+a:hover {
+  color: rgb(81, 162, 255);
+}
+header {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+header p {
+  max-width: 50%;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  font: inherit;
+  width: 1.15rem;
+  height: 1.15rem;
+  border: 0.15rem solid white;
+  display: grid;
+  place-content: center;
+  border-radius: 0.3rem;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65rem;
+  height: 0.65rem;
+  transform: scale(0);
+  transition: 0.12s transform ease-in-out;
+  box-shadow: inset 1em 1em rgb(6, 223, 114);
+  clip-path: polygon(
+    14% 44%,
+    0 65%,
+    50% 100%,
+    100% 16%,
+    80% 0%,
+    43% 62%
+  ); /* source: https://bennettfeely.com/clippy/ */
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+.games-page {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
+}
+.categories {
+  background-color: rgb(15, 23, 43);
+  height: fit-content;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.games {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.game {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(15, 23, 43);
+  padding: 1rem;
+  border-radius: 1rem;
+  gap: 0.5rem;
+  height: fit-content;
+  flex-wrap: wrap;
+}
+
+.categories form {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  gap: 0.5rem;
+}
+.categories li {
+  display: flex;
+  gap: 1rem;
+}
+
+/* source: https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.input-form input {
+  background-color: rgb(16, 24, 40);
+  padding: 0.5rem;
+  border: 2px solid rgb(237, 233, 254);
+  border-radius: 0.5rem;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-form input:focus {
+  border: 2px solid rgb(237, 233, 254);
+  border-color: #3b82f6;
+}
+.input-form select {
+  padding: 0.5rem;
+  background-color: rgb(16, 24, 40);
+  border-radius: 1rem;
+  border: 2px solid rgb(237, 233, 254);
+}
+.errors {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.errors li {
+  color: rgb(251, 44, 54);
+}
