@@ -10,12 +10,15 @@ app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
 
+const assets = path.join(__dirname, "public");
+app.use(express.static(assets));
+
 app.use("/", appRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, (error) => {
-	if (error) {
-		throw Error;
-	}
-	console.log(`App running on port ${PORT}`);
+  if (error) {
+    throw Error;
+  }
+  console.log(`App running on port ${PORT}`);
 });

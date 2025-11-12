@@ -34,8 +34,11 @@ const fetchGenres = async () => {
   return genres.rows;
 };
 
+const appendGame = async ({ name, developer, genre, company }) => {};
+
 module.exports = {
   fetchGames,
   fetchGamesByGenreID,
   fetchGenres,
+  appendGame,
 };
